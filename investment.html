@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings and Investments Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            color: #009688;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            cursor: pointer;
+            background-color: #009688;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00796b;
+        }
+
+        #savingsResult, #investmentsResult {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Savings and Investments Calculator</h1>
+    <form id="calculatorForm">
+        <label for="principal">Initial Principal:</label>
+        <input type="number" id="principal" required>
+        <br>
+
+        <label for="interestRate">Annual Interest Rate (%):</label>
+        <input type="number" id="interestRate" required>
+        <br>
+
+        <label for="years">Number of Years:</label>
+        <input type="number" id="years" required>
+        <br>
+
+        <button type="button" onclick="calculateSavings()">Calculate Savings</button>
+        <button type="button" onclick="calculateInvestments()">Calculate Investments</button>
+    </form>
+
+    <div id="savingsResult"></div>
+    <div id="investmentsResult"></div>
+
+    <footer>&copy; 2024 Savings and Investments Calculator</footer>
+
+    <script>
+        function calculateSavings() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const years = parseInt(document.getElementById('years').value);
+
+            const futureValue = principal * Math.pow(1 + interestRate, years);
+
+            document.getElementById('savingsResult').innerText = `Savings After ${years} Years: $${futureValue.toFixed(2)}`;
+        }
+
+        function calculateInvestments() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const years = parseInt(document.getElementById('years').value);
+
+            const futureValue = principal * Math.pow(1 + interestRate, years);
+
+            const monthlyInvestment = futureValue / ((Math.pow(1 + interestRate, years) - 1) / interestRate);
+
+            document.getElementById('investmentsResult').innerText = `Monthly Investments to Reach Goal: $${monthlyInvestment.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
